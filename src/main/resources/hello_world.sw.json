@@ -1,0 +1,41 @@
+{
+  "id": "hello_world",
+  "version": "1.0",
+  "specVersion": "0.8",
+  "name": "Hello World Workflow",
+  "description": "JSON based hello world workflow",
+  "start": "Welcome",
+  "events": [
+    {
+      "name": "go ahead",
+      "kind": "consumed",
+      "source": "greetEvent",
+      "type": "dev.knative.kafka.event",
+      "correlation": [{
+        "contextAttributeName": "name"
+      }]
+    }
+  ],
+  "states": [
+    {
+      "name": "Welcome",
+      "type": "inject",
+      "data": {
+        "name": "donato"
+      },
+      "transition": "Wait Event"
+    },
+    {
+      "name": "Wait Event",
+      "type": "event",
+      "onEvents": [
+        {
+          "eventRefs": [
+            "go ahead"
+          ]
+        }
+      ],
+      "end": true
+    }
+  ]
+}
