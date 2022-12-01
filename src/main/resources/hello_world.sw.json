@@ -10,7 +10,7 @@
       "name": "go ahead",
       "kind": "consumed",
       "source": "greetEvent",
-      "type": "dev.knative.kafka.event",
+      "type": "greetEventType",
       "correlation": [{
         "contextAttributeName": "name"
       }]
