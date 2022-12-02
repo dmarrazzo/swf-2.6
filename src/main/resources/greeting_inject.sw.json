@@ -1,0 +1,41 @@
+{
+    "id": "greeting_inject",
+    "version": "1.0",
+    "specVersion": "0.8",
+    "name": "Greeting Inject Workflow",
+    "description": "Greeting Inject Workflow Sample",
+    "start": "Inject",
+    "functions": [
+        {
+            "name": "printMessage",
+            "type": "custom",
+            "operation": "sysout"
+        }
+    ],
+    "states": [
+        {
+            "name": "Inject",
+            "type": "inject",
+            "data": {
+                "greeting": "Good Morning"
+            },
+            "transition": "Good Morning"
+        },
+        {
+            "name": "Good Morning",
+            "type": "operation",
+            "actions": [
+                {
+                    "name": "printAction",
+                    "functionRef": {
+                        "refName": "printMessage",
+                        "arguments": {
+                            "message": ".greeting + \" \" + .name"
+                        }
+                    }
+                }
+            ],
+            "end": true
+        }
+    ]
+}
