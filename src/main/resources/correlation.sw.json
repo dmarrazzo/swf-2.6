@@ -1,0 +1,97 @@
+{
+  "id": "correlation",
+  "version": "1.0",
+  "specVersion": "0.8",
+  "name": "Correlation Workflow",
+  "description": "Correlation Workflow Sample",
+  "start": "Start Event",
+  "functions": [
+    {
+      "name": "printMessage",
+      "type": "custom",
+      "operation": "sysout"
+    }
+  ],
+  "events": [
+    {
+      "name": "startEvent",
+      "kind": "consumed",
+      "source": "greetEvent",
+      "type": "startEventType",
+      "correlation": [
+        {
+          "contextAttributeName": "name"
+        }
+      ]
+    },
+    {
+      "name": "continueEvent",
+      "kind": "consumed",
+      "source": "greetEvent",
+      "type": "continueEventType",
+      "correlation": [
+        {
+          "contextAttributeName": "name"
+        }
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "Start Event",
+      "type": "event",
+      "onEvents": [
+        {
+          "eventRefs": [
+            "startEvent"
+          ]
+        }
+      ],
+      "transition": "Good Morning"
+    },
+    {
+      "name": "Good Morning",
+      "type": "operation",
+      "actions": [
+        {
+          "name": "printAction",
+          "functionRef": {
+            "refName": "printMessage",
+            "arguments": {
+              "message": "\"Good Morning \"+ .name"
+            }
+          }
+        }
+      ],
+      "transition": "Wait Event"
+    },
+    {
+      "name": "Wait Event",
+      "type": "event",
+      "onEvents": [
+        {
+          "eventRefs": [
+            "continueEvent"
+          ]
+        }
+      ],
+      "transition": "Good Bye"
+    },
+    {
+      "name": "Good Bye",
+      "type": "operation",
+      "actions": [
+        {
+          "name": "printAction",
+          "functionRef": {
+            "refName": "printMessage",
+            "arguments": {
+              "message": "\"Good Bye \"+ .name"
+            }
+          }
+        }
+      ],
+      "end": true
+    }
+  ]
+}

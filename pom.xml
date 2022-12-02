@@ -51,10 +51,18 @@
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-addons-quarkus-process-svg</artifactId>
     </dependency>
-    <!-- knative event -->
+    <!-- jdbc persistence for correlation -->
     <dependency>
       <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-quarkus-knative-eventing</artifactId>
+      <artifactId>kogito-addons-quarkus-persistence-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-postgresql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-agroal</artifactId>
     </dependency>
     <!-- baseline dependencies-->
     <dependency>
