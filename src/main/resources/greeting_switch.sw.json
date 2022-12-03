@@ -1,0 +1,63 @@
+{
+  "id": "greeting_switch",
+  "version": "1.0",
+  "specVersion": "0.8",
+  "name": "Greeting Switch Workflow",
+  "description": "Greeting Switch Workflow Sample",
+  "start": "Switch",
+  "functions": [
+    {
+      "name": "printMessage",
+      "type": "custom",
+      "operation": "sysout"
+    }
+  ],
+  "states": [
+    {
+      "name": "Switch",
+      "type": "switch",
+      "dataConditions": [
+        {
+          "name": "english",
+          "condition": ".lang == \"it\"",
+          "transition": "Buon Giorno"
+        }
+      ],
+      "defaultCondition": {
+        "transition": "Good Morning"
+      }
+    },
+    {
+      "name": "Good Morning",
+      "type": "operation",
+      "actions": [
+        {
+          "name": "printAction",
+          "functionRef": {
+            "refName": "printMessage",
+            "arguments": {
+              "message": "\"Good morning \" + .name"
+            }
+          }
+        }
+      ],
+      "end": true
+    },
+        {
+      "name": "Buon Giorno",
+      "type": "operation",
+      "actions": [
+        {
+          "name": "printAction",
+          "functionRef": {
+            "refName": "printMessage",
+            "arguments": {
+              "message": "\"Buon Giorno \" + .name"
+            }
+          }
+        }
+      ],
+      "end": true
+    }
+  ]
+}
