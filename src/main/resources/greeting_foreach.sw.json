@@ -1,0 +1,37 @@
+{
+  "id": "greeting_foreach",
+  "version": "1.0",
+  "specVersion": "0.8",
+  "name": "Greeting Foreach Workflow",
+  "description": "Greeting Foreach Workflow Sample",
+  "start": "For each",
+  "functions": [
+    {
+      "name": "printMessage",
+      "type": "custom",
+      "operation": "sysout"
+    }
+  ],
+  "states": [
+    {
+      "name": "For each",
+      "type": "foreach",
+      "mode": "sequential",
+      "inputCollection": ".names",
+      "iterationParam": "name",
+      "outputCollection": ".greetings",
+      "actions": [
+            {
+              "name": "printAction",
+              "functionRef": {
+                "refName": "printMessage",
+                "arguments": {
+                  "message": "\"Good morning \" + .name"
+                }
+              }
+            }
+      ],
+      "end": true
+    }
+  ]
+}

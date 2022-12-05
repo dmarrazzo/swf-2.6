@@ -4,8 +4,15 @@
 
 Launch the process:
 
-curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{ "workflowdata": { "name": "donato"} }' http://localhost:8080/greeting
+```sh
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{ "workflowdata": { "name": "Donato"} }' http://localhost:8080/greeting
+```
 
+### Foreach
+
+```sh
+curl -X POST -H 'Content-Type:application/json' -H 'Accept:application/json' -d '{ "workflowdata": { "names": ["Donato", "Rachid"]}}' http://localhost:8080/greeting_foreach
+```
 
 ## Correlation
 

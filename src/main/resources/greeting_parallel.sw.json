@@ -1,0 +1,52 @@
+{
+  "id": "greeting_parallel",
+  "version": "1.0",
+  "specVersion": "0.8",
+  "name": "Greeting Parallel Workflow",
+  "description": "Greeting Parallel Workflow Sample",
+  "start": "Parallel",
+  "functions": [
+    {
+      "name": "printMessage",
+      "type": "custom",
+      "operation": "sysout"
+    }
+  ],
+  "states": [
+    {
+      "name": "Parallel",
+      "type": "parallel",
+      "branches": [
+        {
+          "name": "en",
+          "actions": [
+            {
+              "name": "printAction",
+              "functionRef": {
+                "refName": "printMessage",
+                "arguments": {
+                  "message": "\"Good morning \" + .name"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "it",
+          "actions": [
+            {
+              "name": "printAction",
+              "functionRef": {
+                "refName": "printMessage",
+                "arguments": {
+                  "message": "\"Buon Giorno \" + .name"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "end": true
+    }
+  ]
+}
