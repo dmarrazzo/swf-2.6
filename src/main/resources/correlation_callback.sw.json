@@ -1,0 +1,68 @@
+{
+  "id": "correlation_callback",
+  "version": "1.0",
+  "specVersion": "0.8",
+  "name": "Correlation Callback Workflow",
+  "description": "Correlation Callback Workflow Sample",
+  "start": "Start Event",
+  "functions": [
+    {
+      "name": "printMessage",
+      "type": "custom",
+      "operation": "sysout"
+    }
+  ],
+  "events": [
+    {
+      "name": "startEvent",
+      "kind": "consumed",
+      "source": "greetEvent",
+      "type": "cbStartEventType",
+      "correlation": [
+        {
+          "contextAttributeName": "name"
+        }
+      ]
+    },
+    {
+      "name": "continueEvent",
+      "kind": "consumed",
+      "source": "greetEvent",
+      "type": "cbContinueEventType",
+      "correlation": [
+        {
+          "contextAttributeName": "name"
+        }
+      ]
+    }
+  ],
+  "states": [
+    {
+      "name": "Start Event",
+      "type": "event",
+      "onEvents": [
+        {
+          "eventRefs": [
+            "startEvent"
+          ]
+        }
+      ],
+      "transition": "Callback"
+    },
+    {
+      "name": "Callback",
+      "type": "callback",
+      "action": {
+        "name": "printAction",
+        "functionRef": {
+          "refName": "printMessage",
+          "arguments": {
+            "message": "\"Good Morning \"+ .name"
+          }
+        }
+      },
+      "eventRef": "continueEvent",
+      "end": true
+    }
+  ]
+}
