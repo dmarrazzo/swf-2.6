@@ -1,0 +1,33 @@
+{
+    "id": "foreach_child",
+    "version": "1.0",
+    "specVersion": "0.8",
+    "name": "Foreach child Workflow",
+    "description": "Foreach child Workflow Sample",
+    "start": "Print",
+    "functions": [
+        {
+            "name": "printMessage",
+            "type": "custom",
+            "operation": "sysout"
+        }
+    ],
+    "states": [
+        {
+            "name": "Print",
+            "type": "operation",
+            "actions": [
+                {
+                    "name": "printAction",
+                    "functionRef": {
+                        "refName": "printMessage",
+                        "arguments": {
+                            "message": ".name"
+                        }
+                    }
+                }
+            ],
+            "end": true
+        }
+    ]
+}
