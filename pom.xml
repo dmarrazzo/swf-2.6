@@ -102,6 +102,17 @@
       <id>redhat</id>
       <url>https://maven.repository.redhat.com/ga</url>
     </repository>
+    <repository>
+      <id>earlyaccess</id>
+      <url>https://maven.repository.redhat.com/earlyaccess/all/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>

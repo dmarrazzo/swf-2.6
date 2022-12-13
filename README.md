@@ -60,44 +60,9 @@ curl -X POST -H "Content-Type: application/json" -H "ce-specversion: 1.0" -H "ce
 
 ### GraphQL
 
-```graphql
-{
-  ProcessInstances {
-    id
-    processId
-    processName
-    businessKey
-    parentProcessInstanceId
-    roles
-    variables
-    state
-    start
-    lastUpdate
-    end
-    addons
-    endpoint
-    addons
-    serviceUrl
-    nodes {
-      id
-      nodeId
-      name
-      enter
-      exit
-      type
-      definitionId
-      __typename
-    }
-    __typename
-  }
-}
-```
-
-#### GraphQL Problem with correlation
+The following curl command extract from data index the current status of the workflow instance:
 
 ```sh
-curl -X POST -H "Content-Type: application/json" -H "ce-specversion: 1.0" -H "ce-source: coolSystem" -H "ce-type: cbStartEventType" -H "ce-id: f0643c68-609c-48aa-a820-5df423fa4f01" -d '{ "name":"Donato" }' http://localhost:8080
-
 curl 'http://localhost:8180/graphql' \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' \
@@ -108,18 +73,4 @@ curl 'http://localhost:8180/graphql' \
   -H 'Sec-Fetch-Site: same-origin' \
   --data-raw '{"query":"{\n  ProcessInstances {\n    id\n    processId\n    processName\n    businessKey\n    parentProcessInstanceId\n    roles\n    variables\n    state\n    start\n    lastUpdate\n    end\n    addons\n    endpoint\n    addons\n    serviceUrl\n    nodes {\n      id\n      nodeId\n      name\n      enter\n      exit\n      type\n      definitionId\n      __typename\n    }\n    __typename\n  }\n}\n","variables":null}' \
   --compressed
-
-curl -X POST -H "Content-Type: application/json" -H "ce-specversion: 1.0" -H "ce-source: coolSystem" -H "ce-type: cbContinueEventType" -H "ce-id: f0643c68-609c-48aa-a820-5df423fa4f02" -d '{ "name":"Donato" }' http://localhost:8080
-
-curl 'http://localhost:8180/graphql' \
-  -H 'Accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -H 'Origin: http://localhost:8180' \
-  -H 'Referer: http://localhost:8180/graphiql/' \
-  -H 'Sec-Fetch-Dest: empty' \
-  -H 'Sec-Fetch-Mode: cors' \
-  -H 'Sec-Fetch-Site: same-origin' \
-  --data-raw '{"query":"{\n  ProcessInstances {\n    id\n    processId\n    processName\n    businessKey\n    parentProcessInstanceId\n    roles\n    variables\n    state\n    start\n    lastUpdate\n    end\n    addons\n    endpoint\n    addons\n    serviceUrl\n    nodes {\n      id\n      nodeId\n      name\n      enter\n      exit\n      type\n      definitionId\n      __typename\n    }\n    __typename\n  }\n}\n","variables":null}' \
-  --compressed
-
 ```
