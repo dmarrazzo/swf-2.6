@@ -64,6 +64,11 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-agroal</artifactId>
     </dependency>
+    <!-- exposing simple self contained rest service -->
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy</artifactId>
+    </dependency>
     <!-- baseline dependencies-->
     <dependency>
       <groupId>io.quarkus</groupId>

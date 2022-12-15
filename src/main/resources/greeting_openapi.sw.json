@@ -1,0 +1,51 @@
+{
+  "id": "greeting_openapi",
+  "version": "1.0",
+  "specVersion": "0.8",
+  "name": "Greeting OpenAPI Workflow",
+  "description": "Greeting OpenAPI Workflow Sample",
+  "start": "Good Morning",
+  "functions": [
+    {
+      "name": "hello",
+      "operation": "specs/local.openapi.yaml#hello",
+      "type": "rest"
+    },
+    {
+      "name": "printMessage",
+      "type": "custom",
+      "operation": "sysout"
+    }
+  ],
+  "states": [
+    {
+      "name": "Good Morning",
+      "type": "operation",
+      "actions": [
+        {
+          "name": "hello",
+          "functionRef": {
+            "refName": "hello",
+            "arguments": {
+              "content" : ".name"
+            }
+          },
+          "actionDataFilter": {
+            "results": ".",
+            "toStateData": ".helloMessage"
+          }
+        },
+        {
+          "name": "printAction",
+          "functionRef": {
+            "refName": "printMessage",
+            "arguments": {
+              "message": ".helloMessage"
+            }
+          }
+        }
+      ],
+      "end": true
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+---
+openapi: 3.0.3
+info:
+  title: getting-started API
+  version: 1.0.0-SNAPSHOT
+paths:
+  /simple:
+    post:
+      tags:
+      - Greeting Resource
+      operationId: hello
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
